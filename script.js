@@ -27,6 +27,9 @@ function playSingleRound(playerSelection, computerSelection) {
 function game() {
     let playerScore = 0, computerScore = 0, i = 0;
 
+    // Evaluate who won by the given integer from the playSingleRound function
+    // then console to the user who won the round and apply score changes if
+    // necessary
     for (i = 0; i < gameLength; i++) {
         playerSelection = prompt("Enter your choice: Rock, Paper or Scissors.");
         computerSelection = getComputerChoice();
@@ -48,6 +51,7 @@ function game() {
     }
 }
 
+// Takes two scores as parameters and logs who won to the console
 function determineWinner(playerScore, computerScore) {
     if (playerScore === computerScore) {
         return "FINAL RESULT: No winner! Tie!";
