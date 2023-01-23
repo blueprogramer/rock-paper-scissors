@@ -1,0 +1,38 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: rgb(15, 15, 15);
+    font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #dfdfdf;
+}
+
+#message {
+    font-size: 2em;
+}
+
+.btn {
+    height: 250px;
+    width: auto;
+    margin: 50px;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.result-container span {
+    display: flex;
+}
+
+.result-container span p {
+    padding: 10px;
+    font-size: 1.3em;
+}

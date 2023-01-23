@@ -1,18 +1,37 @@
-let playerSelection = "Rock";
-let computerSelection = getComputerChoice();
-const gameLength = 5;
+const buttonRock = document.querySelector("#btn-rock");
+const buttonPaper = document.querySelector("#btn-paper");
+const buttonScissors = document.querySelector("#btn-scissors");
 
+const playerScore = document.querySelector(".player-score");
+const computerScore = document.querySelector(".computer-score");
+const messageDisplay = document.querySelector("#message");
+
+const computerChoices = ["Rock", "Paper", "Scissors"];
+
+const roundsToWin = 5;
+let currentPlayerScore = 0;
+let currentComputerScore = 0;
+
+buttonRock.addEventListener("click", () => updateResult(playSingleRound("Rock")));
+buttonPaper.addEventListener("click", () => updateResult(playSingleRound("Paper")));
+buttonScissors.addEventListener("click", () => updateResult(playSingleRound("Scissors")));
+
+function initializeScore() {
+    playerScore.textContent = currentPlayerScore;
+    computerScore.textContent = currentComputerScore;
+}
 
 function getComputerChoice() {
-    const computerChoices = ["Rock", "Paper", "Scissors"];
     return computerChoices[Math.floor(Math.random()*computerChoices.length)]
 }
 
-function playSingleRound(playerSelection, computerSelection) {
+function playSingleRound(playerSelection) {
     playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
+    computerSelection = getComputerChoice().toLowerCase();
 
-    // Return 0 when it's a tie, 1 when person wins, -1 when computer wins
+    console.log(playerSelection);
+    console.log(computerSelection);
+
     if (playerSelection === computerSelection) {
         return 0;
     } else if ((playerSelection === "rock" && computerSelection === "paper")
@@ -24,39 +43,43 @@ function playSingleRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let playerScore = 0, computerScore = 0, i = 0;
-
-    // Evaluate who won by the given integer from the playSingleRound function
-    // then console to the user who won the round and apply score changes if
-    // necessary
-    for (i = 0; i < gameLength; i++) {
-        playerSelection = prompt("Enter your choice: Rock, Paper or Scissors.");
-        computerSelection = getComputerChoice();
-
-        if (playSingleRound(playerSelection, computerSelection) === 0) {
-            console.log("It's a tie!");
-        } else if (playSingleRound(playerSelection, computerSelection) === 1) {
-            playerScore++;
-            console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-        } else {
-            computerScore++;
-            console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
-        }
-        console.log(`Current score: Player ${playerScore}-${computerScore} Computer`);
+function updateResult(singleRoundResult) {
+    switch(singleRoundResult) {
+        case 0:
+            if (messageDisplay.textContent === "You and Zombie boss chose the same.") {
+                messageDisplay.textContent = "You draw the Zombie boss again!"
+            } else {
+                messageDisplay.textContent = "You and Zombie boss chose the same.";
+            }
+            break;
+        case 1:
+            if (messageDisplay.textContent === "You defeat Zombie boss this round.") {
+                messageDisplay.textContent = "You defeat Zombie boss again!"
+            } else {
+                messageDisplay.textContent = "You defeat Zombie boss this round.";
+            }
+            playerScore.textContent = ++currentPlayerScore;
+            break;
+        case -1:
+            if (messageDisplay.textContent === "You lost to Zombie boss this round.") {
+                messageDisplay.textContent = "Zombie boss wins against you again!"
+            } else {
+                messageDisplay.textContent = "You lost to Zombie boss this round.";
+            }
+            computerScore.textContent = ++currentComputerScore;
+            break;
+        default:
+            messageDisplay.textContent = "Uh oh.. Something went really wrong!?";
+            break;
     }
 
-    if (i === gameLength) {
-        console.log(determineWinner(playerScore, computerScore));
+    if (currentPlayerScore === roundsToWin) {
+        alert("You win the game! Congrats");
+        location.reload();
+    } else if (currentComputerScore === roundsToWin) {
+        alert("You lose the game! Yikes!");
+        location.reload();
     }
 }
 
-// Takes two scores as parameters and logs who won to the console
-function determineWinner(playerScore, computerScore) {
-    if (playerScore === computerScore) {
-        return "FINAL RESULT: No winner! Tie!";
-    }
-    return playerScore > computerScore ? "FINAL RESULT: You win!" : "FINAL RESULT: You lose!";
-}
-
-game();
+initializeScore();

@@ -6,9 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
 
-    <script type="text/javascript" src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    
+    <h2 id="message">The Zombies are taking over the world. Can you beat the Zombie boss to save humanity?</h2>
+
+    <div class="buttons-container">
+        <img id="btn-rock" class="btn" src="./images/rps-rock.png" alt="Rock">
+        <img id="btn-paper" class="btn" src="./images/rps-paper.png" alt="Paper">
+        <img id="btn-scissors" class="btn" src="./images/rps-scissors.png" alt="Scissors">
+    </div>
+
+    <div class="result-container">
+        <span>
+            <p>Your score: </p>
+            <p class="player-score"></p>
+        </span>
+        <span>
+            <p>Computer score:</p>
+            <p class="computer-score"></p>
+        </span>
+    </div>
+
+    <script type="text/javascript" src="./script.js"></script>
 </body>
 </html>
