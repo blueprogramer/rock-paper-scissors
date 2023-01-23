@@ -3,7 +3,7 @@ html, body {
     padding: 0;
     height: 100%;
     background-color: rgb(15, 15, 15);
-    font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif;
+    font-family: 'Apocalypse', sans-serif;                
 }
 
 body {
@@ -14,8 +14,12 @@ body {
     color: #dfdfdf;
 }
 
+#title {
+    font-size: 70px;
+}
+
 #message {
-    font-size: 2em;
+    font-size: 40px;
 }
 
 .btn {
@@ -34,5 +38,5 @@ body {
 
 .result-container span p {
     padding: 10px;
-    font-size: 1.3em;
+    font-size: 25px;
 }
