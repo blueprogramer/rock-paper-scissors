@@ -6,6 +6,10 @@ const playerScore = document.querySelector(".player-score");
 const computerScore = document.querySelector(".computer-score");
 const messageDisplay = document.querySelector("#message");
 
+const restartButton = document.querySelector(".restart-btn");
+const playButton = document.querySelector(".play-btn");
+const resultsContainer = document.querySelector(".result-container");
+
 const computerChoices = ["Rock", "Paper", "Scissors"];
 
 const roundsToWin = 5;
@@ -16,7 +20,7 @@ buttonRock.addEventListener("click", () => updateResult(playSingleRound("Rock"))
 buttonPaper.addEventListener("click", () => updateResult(playSingleRound("Paper")));
 buttonScissors.addEventListener("click", () => updateResult(playSingleRound("Scissors")));
 
-function initializeScore() {
+function initialize() {
     playerScore.textContent = currentPlayerScore;
     computerScore.textContent = currentComputerScore;
 }
@@ -74,12 +78,26 @@ function updateResult(singleRoundResult) {
     }
 
     if (currentPlayerScore === roundsToWin) {
-        alert("You win the game! Congrats");
-        location.reload();
+        messageDisplay.textContent = "You saved humanity and defeated the Zombie boss!";
+        buttonRock.classList.add("hide");
+        buttonPaper.classList.add("hide");
+        buttonScissors.classList.add("hide");
+        restartButton.classList.remove("hide");
+        restartButton.classList.add("show");
+        restartButton.addEventListener("click", () => {
+            location.reload();
+        })
     } else if (currentComputerScore === roundsToWin) {
-        alert("You lose the game! Yikes!");
-        location.reload();
+        messageDisplay.textContent = "You are defeated, who will save humanity now? ..."
+        buttonRock.classList.add("hide");
+        buttonPaper.classList.add("hide");
+        buttonScissors.classList.add("hide");
+        restartButton.classList.remove("hide");
+        restartButton.classList.add("show");
+        restartButton.addEventListener("click", () => {
+            location.reload();
+        })
     }
 }
 
-initializeScore();
+initialize();

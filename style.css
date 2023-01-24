@@ -1,9 +1,12 @@
+html, body, button {
+    font-family: 'Apocalypse', sans-serif;
+}
+
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: rgb(15, 15, 15);
-    font-family: 'Apocalypse', sans-serif;                
+    background-color: rgb(15, 15, 15);                
 }
 
 body {
@@ -18,18 +21,58 @@ body {
     font-size: 70px;
 }
 
+.message-container {
+    display: flex;
+}
+
 #message {
+    display: flex;
     font-size: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: auto;
+    animation: 
+        typing 10s steps(84, end),
+        fadeIn 7s
 }
 
 .btn {
     height: 250px;
     width: auto;
     margin: 50px;
+    transition: all 0.3s;
 }
 
 .btn:hover {
     cursor: pointer;
+    transform: scale(1.1);
+}
+
+.styled-btn {
+    width: 220px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid #dfdfdf;
+    margin: 50px auto;
+    background-color: rgb(15, 15, 15);
+    color: #dfdfdf;
+    font-size: 30px;
+    transition: all 0.7s;
+}
+
+.styled-btn:hover {
+    cursor: pointer;
+    background-color: #dfdfdf;
+    color: rgb(15, 15, 15);
+    border: 2px solid rgb(15, 15, 15);
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
 }
 
 .result-container span {
@@ -39,4 +82,14 @@ body {
 .result-container span p {
     padding: 10px;
     font-size: 25px;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
